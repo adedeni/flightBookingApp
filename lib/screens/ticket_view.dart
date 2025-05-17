@@ -76,6 +76,8 @@ class TicketView extends StatelessWidget {
           ),
           //orange part of the ticket
           Container(
+            //i used this to remove the container error
+           decoration: BoxDecoration(),
             
             child: Row(
               children: [
