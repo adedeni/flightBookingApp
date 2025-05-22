@@ -114,9 +114,9 @@ class HomeScreen extends StatelessWidget {
             padding: EdgeInsets.only(left: 20),
            child: Row(
               children: [
-                HotelScreen(),
-                HotelScreen(),
-                HotelScreen()
+               HotelScreen(hotel: {},),
+               HotelScreen(hotel: {},),
+               HotelScreen(hotel: {},)
               ],
            )
             ) ,
