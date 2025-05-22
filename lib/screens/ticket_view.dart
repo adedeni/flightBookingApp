@@ -11,10 +11,10 @@ class TicketView extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = AppLayout.getSize(context);
     return SizedBox(
-     width: size.width,
+     width: size.width*0.85,
      height: 200,
      child: Container(
-      margin: EdgeInsets.only(left: 16),
+      margin: EdgeInsets.only(right: 16),
       child: Column(
         children: [
           //blue part of the ticket
@@ -76,9 +76,7 @@ class TicketView extends StatelessWidget {
           ),
           //orange part of the ticket
           Container(
-            //i used this to remove the container error
-           decoration: BoxDecoration(),
-            
+          color: Styles.orangeColor,
             child: Row(
               children: [
                 SizedBox(
@@ -86,15 +84,78 @@ class TicketView extends StatelessWidget {
                   width: 10,
                   child: DecoratedBox(
                     decoration: BoxDecoration(
+                      color: Styles.backgroundColor,
                       borderRadius: BorderRadius.only(
                         topRight: Radius.circular(10),
                         bottomRight: Radius.circular(10)
                         )
                     )),
+                ),
+                Expanded(child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: LayoutBuilder(
+                    builder: (BuildContext context, BoxConstraints constraints) {
+                      return Flex(
+                      direction: Axis.horizontal,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: List.generate((constraints.constrainWidth()/15).floor(), (index) => SizedBox(width: 5, height: 1,
+                      child: DecoratedBox(decoration: BoxDecoration(
+                        color: Colors.white
+                      )),))
+                    );
+                    },
+                    
+                  ),
+                )),
+                SizedBox(
+                  height: 20,
+                  width: 10,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: Styles.backgroundColor,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        bottomLeft: Radius.circular(10)
+                        )
+                    )),
                 )
+              
               ],
             ),
-          )
+          ),
+        Container(
+              decoration: BoxDecoration(
+              color: Styles.orangeColor,
+              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(21),
+              bottomRight: Radius.circular(21))
+            ),
+            padding: EdgeInsets.only(left: 16, top: 10, right:16, bottom: 16 ),
+                child: Column(children: [
+              Row(
+                children: [
+                    Text("22 May", style: Styles.headLineStyle3.copyWith(color: Colors.white,)),
+                    Spacer(),
+                    Text("08:00 AM", style: Styles.headLineStyle3.copyWith(color: Colors.white,)),
+                    Spacer(),
+                    Text("May 23", style: Styles.headLineStyle3.copyWith(color: Colors.white,))
+                ],
+              ),
+              Gap(5),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: 100, child: Text("Date", style: Styles.headLineStyle4.copyWith(color: Colors.white),),
+                  ),
+                  Text("Departure time", style: Styles.headLineStyle4.copyWith(color: Colors.white),),
+                  SizedBox(
+                    width: 100, child: Text("Number", textAlign: TextAlign.end, style: Styles.headLineStyle4.copyWith(color: Colors.white),),
+                  ),
+                ],
+              )
+            ],)
+        )
         ],
       ),
      ),
