@@ -1,5 +1,6 @@
 import 'package:flightbookingapp/screens/hotel_screen.dart';
 import 'package:flightbookingapp/screens/ticket_view.dart';
+import 'package:flightbookingapp/utils/app_info_list.dart';
 import 'package:flightbookingapp/utils/styles.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
@@ -113,12 +114,8 @@ class HomeScreen extends StatelessWidget {
              scrollDirection: Axis.horizontal,
             padding: EdgeInsets.only(left: 20),
            child: Row(
-              children: [
-               HotelScreen(hotel: {},),
-               HotelScreen(hotel: {},),
-               HotelScreen(hotel: {},)
-              ],
-           )
+              children: hotelList.map((singleHotel) => HotelScreen(hotel: singleHotel)).toList()
+             )
             ) ,
         ],
       )
