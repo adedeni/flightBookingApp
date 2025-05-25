@@ -5,7 +5,7 @@ import 'package:gap/gap.dart';
 
 class HotelScreen extends StatelessWidget {
   final Map<String, dynamic> hotel;
-  const HotelScreen({Key? key, required this.hotel}) : super(key: key);
+  const HotelScreen({super.key, required this.hotel});
 
   @override
   Widget build(BuildContext context) {
