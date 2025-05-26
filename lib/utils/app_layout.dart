@@ -1,21 +1,14 @@
 import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
 class AppLayout {
-  static getSize (BuildContext context){
+  static Size getSize(BuildContext context) {
     return MediaQuery.of(context).size;
   }
-  static getSreenHeight() {
-    return Get.height;
+
+  static double getHeight(BuildContext context, double pixels) {
+    return MediaQuery.of(context).size.height * (pixels / 812); // base height
   }
-  static getSreenWidth() {
-    return Get.width;
-  }
-  static getHeight(double pixels) {
-    double x = getSreenHeight()/pixels;
-    return getSreenHeight()/x; 
-  }
-  static getWidth(double pixels) {
-    double x = getSreenWidth()()/pixels;
-    return getSreenWidth()()/x; 
+
+  static double getWidth(BuildContext context, double pixels) {
+    return MediaQuery.of(context).size.width * (pixels / 375); // base width
   }
 }
