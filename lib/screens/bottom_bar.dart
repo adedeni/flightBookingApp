@@ -5,7 +5,7 @@ import 'package:flightbookingapp/screens/ticket_screen.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 
-import 'profile_screen2.dart';
+import 'assignment.dart';
 
   
   class BottomBar extends StatefulWidget {
@@ -18,11 +18,11 @@ class _BottomBarState extends State<BottomBar> {
   int _selectedIndex = 0;
 
   static final List<Widget> _widgetOptions =<Widget> [
-    HomeScreen(),
-    SearchScreen(),
-    TicketScreen(),
-    ProfileScreen(),
-    ProfileScreen2(),
+    const HomeScreen(),
+    const SearchScreen(),
+    const TicketScreen(),
+    const ProfileScreen(),
+    const Assignment(),
   ];
   void _onItemTapped(int index) {
     setState(() {

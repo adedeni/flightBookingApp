@@ -2,6 +2,7 @@ import 'package:flightbookingapp/screens/hotel_screen.dart';
 import 'package:flightbookingapp/screens/ticket_view.dart';
 import 'package:flightbookingapp/utils/app_info_list.dart';
 import 'package:flightbookingapp/utils/styles.dart';
+import 'package:flightbookingapp/widgets/double_header_text.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -69,17 +70,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
              Gap(40),
-             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Upcoming Flights", style: Styles.headLineStyle2,),
-                InkWell(
-                  onTap: (){
-                    //print("this works");
-                  },
-                  child: Text("View all", style: Styles.textStyle.copyWith(color: Styles.primaryColor),))
-              ],
-             )
+            DoubleHeaderText(bigText: "Upcoming Flight", smallText: "View all")
              ],
             ),
           ),
@@ -94,17 +85,7 @@ class HomeScreen extends StatelessWidget {
           Gap(15),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Hotels", style: Styles.headLineStyle2,),
-                  InkWell(
-                    onTap: (){
-                      //print("this works");
-                    },
-                    child: Text("View all", style: Styles.textStyle.copyWith(color: Styles.primaryColor),))
-                ],
-               ),
+            child:DoubleHeaderText(bigText: "Hotels", smallText: "View all",),
           ),
           Gap(15),
           SingleChildScrollView(
