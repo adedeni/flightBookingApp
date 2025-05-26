@@ -1,4 +1,4 @@
-import 'package:flightbookingapp/utils/layout.dart';
+import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:flightbookingapp/utils/styles.dart';
 import 'package:flightbookingapp/widgets/thick_container.dart';
 import 'package:flutter/material.dart';
@@ -135,30 +135,14 @@ class TicketView extends StatelessWidget {
             padding: EdgeInsets.only(left: 16, top: 10, right:16, bottom: 16 ),
                 child: Column(children: [
               Row(
-  children: [
-    Expanded(
-      child: Text(
-        ticket['date'],
-        style: Styles.headLineStyle3.copyWith(color: Colors.white),
-        textAlign: TextAlign.start,
-      ),
-    ),
-    Expanded(
-      child: Text(
-        ticket['departure_time'],
-        style: Styles.headLineStyle3.copyWith(color: Colors.white),
-        textAlign: TextAlign.center,
-      ),
-    ),
-    Expanded(
-      child: Text(
-        ticket['number'].toString(),
-        style: Styles.headLineStyle3.copyWith(color: Colors.white),
-        textAlign: TextAlign.end,
-      ),
-    ),
-  ],
-),
+                children: [
+                    Text(ticket['date'], style: Styles.headLineStyle3.copyWith(color: Colors.white,)),
+                    Spacer(),
+                    Text(ticket['departure_time'], style: Styles.headLineStyle3.copyWith(color: Colors.white,),),
+                    Spacer(),
+                    Text(ticket['number'].toString(), style: Styles.headLineStyle3.copyWith(color: Colors.white,))
+                ],
+              ),
               Gap(5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

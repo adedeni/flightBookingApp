@@ -1,4 +1,4 @@
-import 'package:flightbookingapp/utils/layout.dart';
+import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:flightbookingapp/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
