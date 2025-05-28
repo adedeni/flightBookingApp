@@ -1,6 +1,7 @@
 import 'package:flightbookingapp/screens/hotel_screen.dart';
 import 'package:flightbookingapp/screens/ticket_view.dart';
 import 'package:flightbookingapp/utils/app_info_list.dart';
+import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:flightbookingapp/utils/styles.dart';
 import 'package:flightbookingapp/widgets/double_header_text.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
@@ -20,7 +21,7 @@ class HomeScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
              children: [
-              Gap(40),
+              Gap(AppLayout.getHeight(context, 40)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -30,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                        Text(
                     "Welcome", style: Styles.headLineStyle3,
                     ),
-                    Gap(5),
+                    Gap(AppLayout.getHeight(context, 5)),
                      Text(
                     "Book Tickets" , style: Styles.headLineStyle1,
                     ),
@@ -38,10 +39,10 @@ class HomeScreen extends StatelessWidget {
                     
                    ),
                    Container(
-                    width: 50,
-                    height: 50,
+                    width: AppLayout.getWidth(context, 50),
+                    height: AppLayout.getHeight(context, 50),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(AppLayout.getHeight(context, 10)),
                       image: DecorationImage(
                         fit: BoxFit.cover,
                         image: AssetImage(
@@ -52,13 +53,13 @@ class HomeScreen extends StatelessWidget {
                    )
                 ],
               ),
-              Gap(25),
+              Gap(AppLayout.getHeight(context, 25)),
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(AppLayout.getHeight(context, 10)),
                   color: Color(0xFFF4F6FD)
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(context, 12), vertical: AppLayout.getHeight(context, 12)),
                 child: Row(  
                   children: [
                     Icon(FluentSystemIcons.ic_fluent_search_regular, color: Color(0Xffbfc205)),
@@ -74,28 +75,28 @@ class HomeScreen extends StatelessWidget {
              ],
             ),
           ),
-          Gap(15),
+          Gap(AppLayout.getHeight(context, 15)),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.only(left: 20),
+            padding: EdgeInsets.only(left: AppLayout.getWidth(context, 20)),
             child: Row(
               children: ticketList.map((singleTicket) => TicketView(ticket: singleTicket)).toList(),
             ) ,
           ),
-          Gap(15),
+          Gap(AppLayout.getHeight(context, 15)),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(context, 20)),
             child:DoubleHeaderText(bigText: "Hotels", smallText: "View all",),
           ),
-          Gap(15),
+          Gap(AppLayout.getHeight(context, 15)),
           SingleChildScrollView(
              scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.only(left: 20),
+            padding: EdgeInsets.only(left: AppLayout.getWidth(context, 20)),
            child: Row(
               children: hotelList.map((singleHotel) => HotelScreen(hotel: singleHotel)).toList()
              )
             ),
-            Gap(10)
+            Gap(AppLayout.getHeight(context, 10))
         ],
       )
     );

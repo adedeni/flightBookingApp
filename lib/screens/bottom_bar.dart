@@ -2,6 +2,7 @@ import 'package:flightbookingapp/screens/home_screen.dart';
 import 'package:flightbookingapp/screens/profile_screen.dart';
 import 'package:flightbookingapp/screens/search_screen.dart';
 import 'package:flightbookingapp/screens/ticket_screen.dart';
+import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 
@@ -68,7 +69,7 @@ class _BottomBarState extends State<BottomBar> {
         showUnselectedLabels: false,
         selectedItemColor: Colors.blueGrey,
         unselectedItemColor: const Color(0xFF526480),
-        elevation: 10,
+        elevation: AppLayout.getHeight(context, 10),
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
       ),
