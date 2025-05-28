@@ -79,7 +79,7 @@ class SearchScreen extends StatelessWidget {
           Gap(AppLayout.getHeight(context, 25)),
           Container(
             padding: EdgeInsets.symmetric(
-              vertical: AppLayout.getHeight(context, 18),
+              vertical: AppLayout.getHeight(context, 15),
               horizontal: AppLayout.getWidth(context, 15),
             ),
             decoration: BoxDecoration(
@@ -95,7 +95,27 @@ class SearchScreen extends StatelessWidget {
             ),
           ),
           Gap(AppLayout.getHeight(context, 40)),
-          const DoubleHeaderText(bigText: "Upcoming Flights", smallText: "View all",)
+          const DoubleHeaderText(bigText: "Upcoming Flights", smallText: "View all",),
+          Row(children: [
+            SizedBox(
+              height: AppLayout.getHeight(context, 400),
+              width: size.width*.42,
+              child: Column(
+                children: [
+                  Container(
+                    height: AppLayout.getHeight(context, 190),
+                    decoration: BoxDecoration(
+                      image: DecorationImage(fit: BoxFit.cover,
+                      image: AssetImage(
+                        'assets/images/flightaisle.png'
+                      )
+                      )
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],)
         ],
       ),
     );
