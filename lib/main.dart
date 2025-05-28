@@ -1,4 +1,4 @@
-import 'package:flightbookingapp/screens/bottom_bar.dart';
+import 'package:flightbookingapp/class/bottom_bar.dart';
 import 'package:flightbookingapp/utils/styles.dart';
 import 'package:flutter/material.dart';
 

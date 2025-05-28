@@ -6,7 +6,7 @@ import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 
-import 'assignment.dart';
+import '../screens/assignment.dart';
 
   
   class BottomBar extends StatefulWidget {

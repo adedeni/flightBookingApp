@@ -3,10 +3,10 @@ import 'package:flightbookingapp/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-class HotelScreen extends StatelessWidget {
+class HotelView extends StatelessWidget {
   final Map<String, dynamic> hotel;
 
-  const HotelScreen({super.key, required this.hotel});
+  const HotelView({super.key, required this.hotel});
 
   @override
   Widget build(BuildContext context) {

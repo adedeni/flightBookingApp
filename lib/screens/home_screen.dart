@@ -1,5 +1,5 @@
-import 'package:flightbookingapp/screens/hotel_screen.dart';
-import 'package:flightbookingapp/screens/ticket_view.dart';
+import 'package:flightbookingapp/class/hotel_view.dart';
+import 'package:flightbookingapp/class/ticket_view.dart';
 import 'package:flightbookingapp/utils/app_info_list.dart';
 import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:flightbookingapp/utils/styles.dart';
@@ -93,7 +93,7 @@ class HomeScreen extends StatelessWidget {
              scrollDirection: Axis.horizontal,
             padding: EdgeInsets.only(left: AppLayout.getWidth(context, 20)),
            child: Row(
-              children: hotelList.map((singleHotel) => HotelScreen(hotel: singleHotel)).toList()
+              children: hotelList.map((singleHotel) => HotelView(hotel: singleHotel)).toList()
              )
             ),
             Gap(AppLayout.getHeight(context, 10))

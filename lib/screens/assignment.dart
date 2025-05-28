@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flightbookingapp/utils/app_layout.dart';
+import 'package:flightbookingapp/class/assignment_card_view.dart';
+import 'package:flightbookingapp/utils/tile_data.dart';
 
 class Assignment extends StatelessWidget {
   const Assignment({super.key});
@@ -29,18 +31,14 @@ class Assignment extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               color: const Color(0xFF1F1F1F),
-              borderRadius: BorderRadius.circular(
-                AppLayout.getHeight(context, 8),
-              ),
+              borderRadius: BorderRadius.circular(AppLayout.getHeight(context, 8)),
             ),
             padding: EdgeInsets.all(AppLayout.getHeight(context, 12)),
             child: Row(
               children: [
                 CircleAvatar(
                   radius: AppLayout.getHeight(context, 28),
-                  backgroundImage: const AssetImage(
-                    'assets/images/profile.jpg',
-                  ),
+                  backgroundImage: const AssetImage('assets/images/profile.jpg'),
                 ),
                 SizedBox(width: AppLayout.getWidth(context, 12)),
                 Expanded(
@@ -77,36 +75,33 @@ class Assignment extends StatelessWidget {
 
           SizedBox(height: AppLayout.getHeight(context, 24)),
 
-          _buildCard(
-            context,
+          AssignmentCard(
             items: [
-              _TileData(Icons.list, 'Lists'),
-              _TileData(Icons.campaign, 'Broadcast messages'),
-              _TileData(Icons.star_border, 'Starred'),
-              _TileData(Icons.devices, 'Linked devices'),
+              TileData(Icons.photo_library_outlined, 'Lists'),
+              TileData(Icons.campaign, 'Broadcast messages'),
+              TileData(Icons.star_border, 'Starred'),
+              TileData(Icons.devices, 'Linked devices'),
             ],
           ),
 
           SizedBox(height: AppLayout.getHeight(context, 24)),
 
-          _buildCard(
-            context,
+          AssignmentCard(
             items: [
-              _TileData(Icons.key_outlined, 'Account'),
-              _TileData(Icons.lock_outline, 'Privacy'),
-              _TileData(Icons.chat_bubble_outline, 'Chats', badge: '2'),
-              _TileData(Icons.notifications_none, 'Notifications'),
-              _TileData(Icons.sync_alt, 'Storage and data'),
+              TileData(Icons.key_outlined, 'Account'),
+              TileData(Icons.lock_outline, 'Privacy'),
+              TileData(Icons.chat_rounded, 'Chats', badge: '2'),
+              TileData(Icons.notifications_none, 'Notifications'),
+              TileData(Icons.sync_alt, 'Storage and data'),
             ],
           ),
 
           SizedBox(height: AppLayout.getHeight(context, 24)),
 
-          _buildCard(
-            context,
+          AssignmentCard(
             items: [
-              _TileData(Icons.info_outline, 'Help'),
-              _TileData(Icons.person_add_alt_1_outlined, 'Invite a friend'),
+              TileData(Icons.info_outline, 'Help'),
+              TileData(Icons.person_add_alt_1_outlined, 'Invite a friend'),
             ],
           ),
 
@@ -114,7 +109,6 @@ class Assignment extends StatelessWidget {
 
           Text(
             'Also from Meta',
-            textAlign: TextAlign.start,
             style: TextStyle(
               color: Colors.grey.shade600,
               fontSize: AppLayout.getHeight(context, 14),
@@ -124,12 +118,11 @@ class Assignment extends StatelessWidget {
 
           SizedBox(height: AppLayout.getHeight(context, 5)),
 
-          _buildCard(
-            context,
+          AssignmentCard(
             items: [
-              _TileData(Icons.camera_alt_outlined, 'Open Instagram'),
-              _TileData(Icons.facebook_rounded, 'Open Facebook'),
-              _TileData.custom(
+              TileData(Icons.camera_alt_outlined, 'Open Instagram'),
+              TileData(Icons.facebook_rounded, 'Open Facebook'),
+              TileData.custom(
                 Text(
                   '@',
                   style: TextStyle(
@@ -140,112 +133,11 @@ class Assignment extends StatelessWidget {
                 ),
                 'Open Threads',
               ),
-              _TileData(Icons.circle_outlined, 'Open Meta AI Apps'),
+              TileData(Icons.circle_outlined, 'Open Meta AI Apps'),
             ],
           ),
         ],
       ),
     );
   }
-
-  Widget _buildCard(BuildContext context, {required List<_TileData> items}) {
-    return Container(
-      decoration: BoxDecoration(
-        color: const Color(0xFF1F1F1F),
-        borderRadius: BorderRadius.circular(AppLayout.getHeight(context, 8)),
-      ),
-      child: Column(
-        children:
-            items.map((data) {
-              final isLast = items.indexOf(data) == items.length - 1;
-              return Column(
-                children: [
-                  ListTile(
-                    leading:
-                        data.customIcon != null
-                            ? data.customIcon!
-                            : Icon(
-                              data.icon,
-                              color: Colors.white,
-                              size: AppLayout.getHeight(context, 24),
-                            ),
-
-                    title: Text(
-                      data.title,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontFamily:
-                            'Roboto',
-                        fontWeight: FontWeight.w400,
-                        fontSize: AppLayout.getHeight(context, 15),
-                      ),
-                    ),
-                    trailing:
-                        data.badge != null
-                            ? Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: AppLayout.getWidth(context, 6),
-                                    vertical: AppLayout.getHeight(context, 2),
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey.shade800,
-                                    borderRadius: BorderRadius.circular(
-                                      AppLayout.getHeight(context, 12),
-                                    ),
-                                  ),
-                                  child: Text(
-                                    data.badge!,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: AppLayout.getHeight(
-                                        context,
-                                        12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: AppLayout.getWidth(context, 8)),
-                                Icon(
-                                  Icons.chevron_right,
-                                  color: Colors.grey.shade500,
-                                  size: AppLayout.getHeight(context, 24),
-                                ),
-                              ],
-                            )
-                            : Icon(
-                              Icons.chevron_right,
-                              color: Colors.grey.shade500,
-                              size: AppLayout.getHeight(context, 24),
-                            ),
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: AppLayout.getWidth(context, 12),
-                      vertical: AppLayout.getHeight(context, 0),
-                    ),
-                  ),
-                  if (!isLast)
-                    Divider(
-                      height: 0,
-                      color: Colors.grey.shade800,
-                      indent: AppLayout.getWidth(context, 55),
-                    ),
-                ],
-              );
-            }).toList(),
-      ),
-    );
-  }
-}
-
-class _TileData {
-  final IconData? icon;
-  final String title;
-  final String? badge;
-  final Widget? customIcon;
-
-  _TileData(this.icon, this.title, {this.badge}) : customIcon = null;
-  // ignore: unused_element_parameter
-  _TileData.custom(this.customIcon, this.title, {this.badge}) : icon = null;
 }
