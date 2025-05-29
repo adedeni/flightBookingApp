@@ -90,32 +90,71 @@ class SearchScreen extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                'Find Tickets', style: Styles.textStyle.copyWith(color: Colors.white)
-                ),
+                'Find Tickets',
+                style: Styles.textStyle.copyWith(color: Colors.white),
+              ),
             ),
           ),
           Gap(AppLayout.getHeight(context, 40)),
-          const DoubleHeaderText(bigText: "Upcoming Flights", smallText: "View all",),
-          Row(children: [
-            SizedBox(
-              height: AppLayout.getHeight(context, 400),
-              width: size.width*.42,
-              child: Column(
-                children: [
-                  Container(
-                    height: AppLayout.getHeight(context, 190),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(fit: BoxFit.cover,
-                      image: AssetImage(
-                        'assets/images/flightaisle.png'
-                      )
-                      )
+          const DoubleHeaderText(
+            bigText: "Upcoming Flights",
+            smallText: "View all",
+          ),
+          Gap(AppLayout.getHeight(context, 15)),
+          Row(
+            children: [
+              Container(
+                height: AppLayout.getHeight(context, 400),
+                width: size.width * .42,
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppLayout.getWidth(context, 15),
+                  vertical: AppLayout.getHeight(context, 15),
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(
+                    AppLayout.getHeight(context, 20),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade200,
+                      blurRadius: 1,
+                      spreadRadius: 1,
                     ),
-                  )
-                ],
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      height: AppLayout.getHeight(context, 190),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          AppLayout.getHeight(context, 12),
+                        ),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: const AssetImage(
+                            'assets/images/flightaisle.png',
+                          ),
+                        ),
+                      ),
+                    ),
+                    Gap(AppLayout.getHeight(context, 12)),
+                    Text(
+                      "20% discount on the early booking of this flight. Don't miss the chance.",
+                      style: Styles.headLineStyle4.copyWith(
+                        color: Colors.black,
+                        fontSize: AppLayout.getHeight(context, 19),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            )
-          ],)
+              Container(
+                
+              )
+            ],
+          ),
         ],
       ),
     );
