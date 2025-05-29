@@ -3,8 +3,8 @@ import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:flightbookingapp/class/assignment_card_view.dart';
 import 'package:flightbookingapp/utils/tile_data.dart';
 
-class Assignment extends StatelessWidget {
-  const Assignment({super.key});
+class Settings extends StatelessWidget {
+  const Settings({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,9 +72,7 @@ class Assignment extends StatelessWidget {
               ],
             ),
           ),
-
           SizedBox(height: AppLayout.getHeight(context, 24)),
-
           AssignmentCard(
             items: [
               TileData(Icons.photo_library_outlined, 'Lists'),
@@ -83,9 +81,7 @@ class Assignment extends StatelessWidget {
               TileData(Icons.devices, 'Linked devices'),
             ],
           ),
-
           SizedBox(height: AppLayout.getHeight(context, 24)),
-
           AssignmentCard(
             items: [
               TileData(Icons.key_outlined, 'Account'),

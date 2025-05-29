@@ -11,7 +11,7 @@ class DoubleHeaderText extends StatelessWidget {
     return   Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(bigText, style: Styles.headLineStyle2,),
+                Text(bigText, style: Styles.headLineStyle2),
                 InkWell(
                   onTap: (){
                     //print("this works");

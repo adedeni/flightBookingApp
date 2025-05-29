@@ -6,7 +6,7 @@ import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 
-import '../screens/assignment.dart';
+import '../screens/settings.dart';
 
   
   class BottomBar extends StatefulWidget {
@@ -23,7 +23,7 @@ class _BottomBarState extends State<BottomBar> {
     const SearchScreen(),
     const TicketScreen(),
     const ProfileScreen(),
-    const Assignment(),
+    const Settings(),
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -59,8 +59,8 @@ class _BottomBarState extends State<BottomBar> {
              label: 'Profile',
           ),
            BottomNavigationBarItem(
-              icon: Icon(FluentSystemIcons.ic_fluent_person_add_regular),
-              activeIcon: Icon(FluentSystemIcons.ic_fluent_person_add_filled),
+              icon: Icon(FluentSystemIcons.ic_fluent_settings_regular),
+              activeIcon: Icon(FluentSystemIcons.ic_fluent_settings_filled),
              label: 'Profile',
           ),
         ],
