@@ -1,3 +1,4 @@
+import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:flightbookingapp/utils/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class DoubleHeaderText extends StatelessWidget {
     return   Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(bigText, style: Styles.headLineStyle2),
+                Text(bigText, style: Styles.headLineStyle2.copyWith(fontSize: AppLayout.getHeight(context, 21))),
                 InkWell(
                   onTap: (){
                     //print("this works");

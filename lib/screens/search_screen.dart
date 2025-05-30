@@ -102,9 +102,10 @@ class SearchScreen extends StatelessWidget {
           ),
           Gap(AppLayout.getHeight(context, 15)),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                height: AppLayout.getHeight(context, 400),
+                height: AppLayout.getHeight(context, 425),
                 width: size.width * .42,
                 padding: EdgeInsets.symmetric(
                   horizontal: AppLayout.getWidth(context, 15),
@@ -152,16 +153,102 @@ class SearchScreen extends StatelessWidget {
               ),
               Column(
                 children: [
-                  Container(
-                    width: size.width*.44,
-                    height: AppLayout.getHeight(context, 174),
-                    decoration: BoxDecoration(
-                      color: Color(0xFF3AB888),
-                      borderRadius: BorderRadius.circular(AppLayout.getHeight(context, 18))
-                    ),
+                  Stack(
+                    children: [
+                      Container(
+                        width: size.width * .44,
+                        height: AppLayout.getHeight(context, 200),
+                        decoration: BoxDecoration(
+                          color: Color(0xFF3AB8B8),
+                          borderRadius: BorderRadius.circular(
+                            AppLayout.getHeight(context, 18),
+                          ),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                          vertical: AppLayout.getHeight(context, 15),
+                          horizontal: AppLayout.getWidth(context, 15),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Discount\nfor surver',
+                              style: Styles.headLineStyle2.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: AppLayout.getHeight(context, 21),
+                              ),
+                            ),
+                            Gap(AppLayout.getHeight(context, 10)),
+                            Text(
+                              'Take the surver about our services and get discount',
+                              style: Styles.headLineStyle2.copyWith(
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                                fontSize: AppLayout.getHeight(context, 17),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        right: -40,
+                        top: -35,
+                        child: Container(
+                        padding: EdgeInsets.all(
+                          AppLayout.getHeight(context, 30),
+                        ),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Color(0xFF189999),
+                            width: AppLayout.getWidth(context, 18),
+                          ),
+                          color: Colors.transparent,
+                        ),
+                      ),
+                    )
+                      ],
+                  ),
+                Gap(AppLayout.getHeight(context, 15)),
+                Container(
+                  width: size.width*.44,
+                  height: AppLayout.getHeight(context, 210),
+                  padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(context, 15), vertical: AppLayout.getHeight(context, 15)),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(AppLayout.getHeight(context, 18)),
+                    color: const Color(0xFFEC6545),
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        'Take love', style: Styles.headLineStyle2.copyWith(color: Colors.white, fontSize: AppLayout.getHeight(context, 21,), fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                      Gap(AppLayout.getHeight(context, 5)),
+                      RichText(
+                        text:const TextSpan(
+                          children: [
+                            TextSpan(
+                              text: '😘',
+                              style: TextStyle(fontSize: 20)
+                              ),
+                               TextSpan(
+                              text: '😎',
+                              style: TextStyle(fontSize: 35)
+                              ),
+                               TextSpan(
+                              text: '😘',
+                              style: TextStyle(fontSize: 20)
+                              ),
+                          ]
+                      ),
+                      )
+                    ],
+                  ),
                   )
-                ],
-              )
+                  ],
+              ),
             ],
           ),
         ],
