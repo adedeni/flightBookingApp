@@ -2,6 +2,7 @@ import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:flightbookingapp/utils/styles.dart';
 import 'package:flightbookingapp/widgets/double_header_text.dart';
 import 'package:flightbookingapp/widgets/icon_text.dart';
+import 'package:flightbookingapp/widgets/top_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -11,6 +12,7 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = AppLayout.getSize(context);
+    
     return Scaffold(
       backgroundColor: Styles.backgroundColor,
       body: ListView(
@@ -27,51 +29,7 @@ class SearchScreen extends StatelessWidget {
             ),
           ),
           Gap(AppLayout.getHeight(context, 20)),
-          FittedBox(
-            child: Container(
-              padding: const EdgeInsets.all(3.5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(
-                  AppLayout.getHeight(context, 50),
-                ),
-                color: const Color(0xFFF4F6FD),
-              ),
-              child: Row(
-                children: [
-                  //airline tickets
-                  Container(
-                    width: size.width * 0.44,
-                    padding: EdgeInsets.symmetric(
-                      vertical: AppLayout.getHeight(context, 7),
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.horizontal(
-                        left: Radius.circular(AppLayout.getHeight(context, 50)),
-                      ),
-                      color: Colors.white,
-                    ),
-                    child: Center(child: Text("Airline Ticktes")),
-                  ),
-                  //hotels
-                  Container(
-                    width: size.width * 0.44,
-                    padding: EdgeInsets.symmetric(
-                      vertical: AppLayout.getHeight(context, 7),
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.horizontal(
-                        right: Radius.circular(
-                          AppLayout.getHeight(context, 50),
-                        ),
-                      ),
-                      color: Colors.transparent,
-                    ),
-                    child: Center(child: Text("Hotels")),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          const TopTabs(firstTab: 'Airline Tickets', secoondTab: 'Hotels',),
           Gap(AppLayout.getHeight(context, 25)),
           const IconText(icon: Icons.flight_takeoff_rounded, text: 'Departure'),
           Gap(AppLayout.getHeight(context, 20)),
@@ -227,19 +185,19 @@ class SearchScreen extends StatelessWidget {
                       ),
                       Gap(AppLayout.getHeight(context, 5)),
                       RichText(
-                        text:const TextSpan(
+                        text: TextSpan(
                           children: [
-                            TextSpan(
+                             TextSpan(
                               text: '😘',
-                              style: TextStyle(fontSize: 20)
+                              style: TextStyle(fontSize: AppLayout.getWidth(context, 20))
                               ),
                                TextSpan(
                               text: '😎',
-                              style: TextStyle(fontSize: 35)
+                              style: TextStyle(fontSize: AppLayout.getHeight(context, 35))
                               ),
                                TextSpan(
                               text: '😘',
-                              style: TextStyle(fontSize: 20)
+                              style: TextStyle(fontSize: AppLayout.getHeight(context, 20))
                               ),
                           ]
                       ),
