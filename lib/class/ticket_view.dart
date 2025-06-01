@@ -1,5 +1,6 @@
 import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:flightbookingapp/utils/styles.dart';
+import 'package:flightbookingapp/widgets/layout_builder.dart';
 import 'package:flightbookingapp/widgets/thick_container.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -49,30 +50,7 @@ class TicketView extends StatelessWidget {
                           children: [
                             SizedBox(
                               height: AppLayout.getHeight(context, 24),
-                              child: LayoutBuilder(
-                                builder: (
-                                  BuildContext context,
-                                  BoxConstraints constraints,
-                                ) {
-                                  return Flex(
-                                    direction: Axis.horizontal,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: List.generate(
-                                      (constraints.constrainWidth() / 6).floor(),
-                                      (index) =>  SizedBox(
-                                        width: 3,
-                                        height: 1,
-                                        child: DecoratedBox(
-                                          decoration: BoxDecoration(
-                                            color:isColor==null? Colors.white: Colors.grey.shade300,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
+                             child: const AppLayoutBuilder( sections: 6, isColor: null,),
                             ),
                             Center(
                               child: Transform.rotate(

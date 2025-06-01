@@ -3,6 +3,7 @@ import 'package:flightbookingapp/utils/app_info_list.dart';
 import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:flightbookingapp/utils/styles.dart';
 import 'package:flightbookingapp/widgets/column_layout.dart';
+import 'package:flightbookingapp/widgets/layout_builder.dart';
 import 'package:flightbookingapp/widgets/top_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -12,7 +13,7 @@ class TicketScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     AppLayout.getSize(context);
+    AppLayout.getSize(context);
     return Scaffold(
       backgroundColor: Styles.backgroundColor,
       body: Stack(
@@ -31,26 +32,46 @@ class TicketScreen extends StatelessWidget {
                 ),
               ),
               Gap(AppLayout.getHeight(context, 20)),
-              const TopTabs(firstTab: 'Upcoming', secoondTab:'Previous' ,),
+              const TopTabs(firstTab: 'Upcoming', secoondTab: 'Previous'),
               Gap(AppLayout.getHeight(context, 20)),
               Container(
-                padding: EdgeInsets.only(left: AppLayout.getHeight(context, 15)),
-                child: TicketView(ticket: ticketList[0], isColor: true,),
+                padding: EdgeInsets.only(
+                  left: AppLayout.getHeight(context, 15),
+                ),
+                child: TicketView(ticket: ticketList[0], isColor: true),
               ),
+              SizedBox(height: AppLayout.getHeight(context, 1)),
               Container(
                 color: Colors.white,
-                padding: EdgeInsets.symmetric(horizontal:15),
-                margin: EdgeInsets.symmetric(horizontal:12),
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppLayout.getWidth(context, 15),
+                  vertical: AppLayout.getHeight(context, 20),
+                ),
+                margin: EdgeInsets.symmetric(
+                  horizontal: AppLayout.getWidth(context, 16),
+                ),
                 child: Column(
                   children: [
                     Row(
-                      children: [
-                        ColumnLayout(firstText: "adedeni q", secondtText: "Passenger",)
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        AppColumnLayout(
+                          firstText: "adedeni",
+                          secondtText: "Passenger",
+                          alignment: CrossAxisAlignment.start,
+                        ),
+                        AppColumnLayout(
+                          firstText: "9036 176161",
+                          secondtText: "Passport",
+                          alignment: CrossAxisAlignment.end,
+                        ),
                       ],
-                    )
+                    ),
+                    const AppLayoutBuilder(isColor: true, sections: 15),
+                    Gap(AppLayout.getHeight(context, 20))
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ],
