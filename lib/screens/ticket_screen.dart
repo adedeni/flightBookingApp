@@ -67,8 +67,76 @@ class TicketScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const AppLayoutBuilder(isColor: true, sections: 15),
-                    Gap(AppLayout.getHeight(context, 20))
+                    Gap(AppLayout.getHeight(context, 20)),
+                    const AppLayoutBuilder(
+                      isColor: true,
+                      sections: 15,
+                      width: 5,
+                    ),
+                    Gap(AppLayout.getHeight(context, 20)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        AppColumnLayout(
+                          firstText: "0158 1997 1408",
+                          secondtText: "Number of E-ticktes",
+                          alignment: CrossAxisAlignment.start,
+                        ),
+                        AppColumnLayout(
+                          firstText: "UI9195",
+                          secondtText: "Booking code",
+                          alignment: CrossAxisAlignment.end,
+                        ),
+                      ],
+                    ),
+                    Gap(AppLayout.getHeight(context, 20)),
+                    const AppLayoutBuilder(
+                      isColor: true,
+                      sections: 15,
+                      width: 5,
+                    ),
+                    Gap(AppLayout.getHeight(context, 20)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Row(
+                              children: [
+                                Image.asset(
+                                  "assets/images/visa.png",
+                                  scale: 111,
+                                ),
+                                Text(
+                                  " *** 1997",
+                                  style: Styles.headLineStyle3.copyWith(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Gap(AppLayout.getHeight(context, 5)),
+                            Text(
+                              "Payment method",
+                              style: Styles.headLineStyle4.copyWith(
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const AppColumnLayout(
+                          firstText: "₦6,999.99",
+                          secondtText: "Price",
+                          alignment: CrossAxisAlignment.end,
+                        ),
+                      ],
+                    ),
+                    Gap(AppLayout.getHeight(context, 20)),
+                    const AppLayoutBuilder(
+                      isColor: true,
+                      sections: 15,
+                      width: 5,
+                    ),
                   ],
                 ),
               ),

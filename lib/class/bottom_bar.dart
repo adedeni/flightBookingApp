@@ -1,3 +1,4 @@
+import 'package:flightbookingapp/screens/dashboard.dart';
 import 'package:flightbookingapp/screens/home_screen.dart';
 import 'package:flightbookingapp/screens/profile_screen.dart';
 import 'package:flightbookingapp/screens/search_screen.dart';
@@ -24,6 +25,7 @@ class _BottomBarState extends State<BottomBar> {
     const TicketScreen(),
     const ProfileScreen(),
     const Settings(),
+    const FoodDashboard(),
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -62,6 +64,11 @@ class _BottomBarState extends State<BottomBar> {
               icon: Icon(FluentSystemIcons.ic_fluent_settings_regular),
               activeIcon: Icon(FluentSystemIcons.ic_fluent_settings_filled),
              label: 'Profile',
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(FluentSystemIcons.ic_fluent_app_store_regular),
+              activeIcon: Icon(FluentSystemIcons.ic_fluent_app_store_filled),
+             label: 'Dashbaord',
           ),
         ],
         currentIndex: _selectedIndex,

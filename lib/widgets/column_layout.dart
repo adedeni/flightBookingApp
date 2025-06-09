@@ -15,9 +15,9 @@ class AppColumnLayout extends StatelessWidget {
     return  Column(
       crossAxisAlignment: alignment,
                           children: [
-                            Text(firstText, style: Styles.headLineStyle3, textAlign: TextAlign.start,),
+                            Text(firstText, style: Styles.headLineStyle3.copyWith(fontSize: 14), textAlign: TextAlign.start,),
                             Gap(AppLayout.getHeight(context, 5)),
-                            Text(secondtText, style: Styles.headLineStyle4,),
+                            Text(secondtText, style: Styles.headLineStyle4.copyWith(fontSize: 12),),
 
                           ],
                         );
