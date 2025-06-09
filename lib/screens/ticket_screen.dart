@@ -7,6 +7,7 @@ import 'package:flightbookingapp/widgets/layout_builder.dart';
 import 'package:flightbookingapp/widgets/top_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:barcode_widget/barcode_widget.dart';
 
 class TicketScreen extends StatelessWidget {
   const TicketScreen({super.key});
@@ -131,17 +132,91 @@ class TicketScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Gap(AppLayout.getHeight(context, 20)),
-                    const AppLayoutBuilder(
-                      isColor: true,
-                      sections: 15,
-                      width: 5,
-                    ),
+                    const SizedBox(height: 1),
+                    //Gap(AppLayout.getHeight(context, 20)),
+                    // const AppLayoutBuilder(
+                    //   isColor: true,
+                    //   sections: 15,
+                    //   width: 5,
+                    // ),
                   ],
                 ),
               ),
+              //barcode
+              const SizedBox(height: 1,),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: AppLayout.getWidth(context, 16),
+                ),
+                padding: EdgeInsets.symmetric(
+                  vertical: AppLayout.getHeight(context, 20),
+                ),
+                decoration: BoxDecoration(
+                   color: Colors.white,
+                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(AppLayout.getHeight(context, 21)),
+                  bottomLeft: Radius.circular(AppLayout.getHeight(context, 21)))
+                ),
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppLayout.getWidth(context, 15),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(
+                      AppLayout.getHeight(context, 15),
+                    ),
+                    child: BarcodeWidget(
+                      data: 'https://github.com/martinovovo',
+                      barcode: Barcode.code128(),
+                      color: Styles.textColor,
+                      width: double.infinity,
+                      drawText: false,
+                      height: AppLayout.getHeight(context, 70),
+                    ),
+                  ),
+                ),
+              ),
+              Gap(AppLayout.getHeight(context, 20)),
+              Container(
+                padding: EdgeInsets.only(
+                  left: AppLayout.getHeight(context, 15),
+                ),
+                child: TicketView(ticket: ticketList[0], isColor: null),
+              ),
             ],
           ),
+        
+        Positioned(
+          left: AppLayout.getWidth(context, 25),
+          top: AppLayout.getHeight(context, 295),
+          child: Container(
+            padding: EdgeInsets.all(AppLayout.getWidth(context, 3)),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Styles.textColor, width: AppLayout.getWidth(context, 2)
+            )
+            ),
+            child: CircleAvatar(
+              maxRadius: 4,
+              backgroundColor: Styles.textColor,
+            ),
+          ),
+        ),
+        Positioned(
+          right: AppLayout.getWidth(context, 25),
+          top: AppLayout.getHeight(context, 295),
+          child: Container(
+            padding: EdgeInsets.all(AppLayout.getWidth(context, 3)),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Styles.textColor, width: AppLayout.getWidth(context, 2)
+            )
+            ),
+            child: CircleAvatar(
+              maxRadius: 4,
+              backgroundColor: Styles.textColor,
+            ),
+          ),
+        )
         ],
       ),
     );
