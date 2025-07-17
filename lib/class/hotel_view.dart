@@ -1,10 +1,12 @@
+import 'package:flightbookingapp/models/hotel_list_model.dart';
 import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:flightbookingapp/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class HotelView extends StatelessWidget {
-  final Map<String, dynamic> hotel;
+  final HotelModel hotel;
+  //final Map<String, dynamic> hotel;
 
   const HotelView({super.key, required this.hotel});
 
@@ -44,23 +46,23 @@ class HotelView extends StatelessWidget {
               color: Styles.primaryColor,
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage("assets/images/${hotel['image']}"),
+                image: NetworkImage(hotel.image.toString()),
               ),
             ),
           ),
           Gap(AppLayout.getHeight(context, 15)),
           Text(
-            "${hotel['place']}",
+            hotel.name.toString(),
             style: Styles.headLineStyle2.copyWith(color: Styles.kakiColor),
           ),
           Gap(AppLayout.getHeight(context, 5)),
           Text(
-            "${hotel['destination']}",
+            hotel.state.toString(),
             style: Styles.headLineStyle3.copyWith(color: Colors.white),
           ),
           Gap(AppLayout.getHeight(context, 8)),
           Text(
-            "₦${hotel['price']}/night",
+            "₦${hotel.amountPerNight}",
             style: Styles.headLineStyle1.copyWith(color: Styles.kakiColor),
           ),
         ],

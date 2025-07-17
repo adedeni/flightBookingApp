@@ -1,8 +1,13 @@
 import 'package:flightbookingapp/class/bottom_bar.dart';
-import 'package:flightbookingapp/utils/styles.dart';
+import 'package:flightbookingapp/controllers/hotel_list_controller.dart';
+import 'package:flightbookingapp/controllers/tickets_list_controller.dart';
+import 'package:flightbookingapp/helper/dependencies.dart' as dependencies;
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await dependencies.init();
   runApp(const MyApp());
 }
 
@@ -12,14 +17,11 @@ class MyApp extends StatelessWidget {
  
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    Get.find<HotelListController>().getHotelList();
+    Get.find<TicketsListController>().getTicketList();
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flight Booking App',
-      theme: ThemeData(
-     
-       primaryColor: primary,
       
-      ),
       home: const BottomBar(),
     );
   }
