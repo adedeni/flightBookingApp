@@ -1,5 +1,5 @@
 import 'package:flightbookingapp/data/api/api_client.dart';
-import 'package:flightbookingapp/widgets/app_constant.dart';
+import 'package:flightbookingapp/utils/app_constant.dart';
 
 import 'package:get/get.dart';
 

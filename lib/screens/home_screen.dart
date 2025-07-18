@@ -1,6 +1,7 @@
 import 'package:flightbookingapp/class/hotel_view.dart';
 import 'package:flightbookingapp/class/ticket_view.dart';
 import 'package:flightbookingapp/controllers/hotel_list_controller.dart';
+import 'package:flightbookingapp/controllers/tickets_list_controller.dart';
 import 'package:flightbookingapp/utils/app_info_list.dart';
 import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:flightbookingapp/utils/styles.dart';
@@ -81,15 +82,29 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Gap(AppLayout.getHeight(context, 15)),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.only(left: AppLayout.getWidth(context, 20)),
-            child: Row(
-              children:
-                  ticketList
-                      .map((singleTicket) => TicketView(ticket: singleTicket))
-                      .toList(),
-            ),
+          GetBuilder<TicketsListController>(
+            builder: (ticketView) {
+              return ticketView.isLoaded
+                  ? SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    padding: EdgeInsets.only(
+                      left: AppLayout.getWidth(context, 20),
+                    ),
+                    child: Row(
+                      children:
+                      // ticketList
+                      //     .map(
+                      //       (singleTicket) =>
+                      //           TicketView(ticket: singleTicket),
+                      //     )
+                      //     .toList(),
+                      List.generate(ticketView.ticketList.length, (index) {
+                        return TicketView(ticket: ticketView.ticketList[index]);
+                      }),
+                    ),
+                  )
+                  : const CircularProgressIndicator(color: Colors.orange);
+            },
           ),
           Gap(AppLayout.getHeight(context, 15)),
           Container(
@@ -101,24 +116,26 @@ class HomeScreen extends StatelessWidget {
           Gap(AppLayout.getHeight(context, 15)),
 
           GetBuilder<HotelListController>(
-            
-            builder: (hotelView){
-            return hotelView.isLoaded ?  SingleChildScrollView(
-             scrollDirection: Axis.horizontal,
-             
-            padding: EdgeInsets.only(left: AppLayout.getWidth(context, 20)),
-           child: Row(
-            
-              //children: hotelList.map((singleHotel) => HotelView(hotel: singleHotel)).toList()
-              children: List.generate(hotelView.hotelList.length, (index){
-                return HotelView(hotel: hotelView.hotelList[index],
-                  
-                );
-              })
-             )
-            )
-             : const CircularProgressIndicator(color: Colors.orange,);
-          }),
+            builder: (hotelView) {
+              return hotelView.isLoaded
+                  ? SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+
+                    padding: EdgeInsets.only(
+                      left: AppLayout.getWidth(context, 20),
+                    ),
+                    child: Row(
+                      //children: hotelList.map((singleHotel) => HotelView(hotel: singleHotel)).toList()
+                      children: List.generate(hotelView.hotelList.length, (
+                        index,
+                      ) {
+                        return HotelView(hotel: hotelView.hotelList[index]);
+                      }),
+                    ),
+                  )
+                  : const CircularProgressIndicator(color: Colors.orange);
+            },
+          ),
           Gap(AppLayout.getHeight(context, 10)),
         ],
       ),

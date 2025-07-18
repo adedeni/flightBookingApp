@@ -1,3 +1,5 @@
+//import 'package:flightbookingapp/models/hotel_list_model.dart';
+import 'package:flightbookingapp/models/tickets_list_model.dart';
 import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:flightbookingapp/utils/styles.dart';
 import 'package:flightbookingapp/widgets/layout_builder.dart';
@@ -7,9 +9,10 @@ import 'package:gap/gap.dart';
 import 'package:get/get_utils/get_utils.dart';
 
 class TicketView extends StatelessWidget {
-  final Map<String, dynamic> ticket;
+  final TicketModel ticket;
+  //final Map<String, dynamic> ticket;
   final bool? isColor;
-  const TicketView({super.key, required this.ticket, this.isColor});
+  const TicketView({super.key, required this.ticket, this.isColor,});
 
   @override
   Widget build(BuildContext context) {

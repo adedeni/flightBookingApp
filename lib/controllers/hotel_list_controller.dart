@@ -7,8 +7,8 @@ class HotelListController extends GetxController {
   final HotelListRepository hotelListRepository;
   HotelListController({required this.hotelListRepository});
 
-  List<dynamic> _hotelList = [];
-  List<dynamic> get hotelList => _hotelList;
+  List<HotelModel> _hotelList = [];
+List<HotelModel> get hotelList => _hotelList;
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
   Future<void> getHotelList() async {
@@ -16,11 +16,15 @@ class HotelListController extends GetxController {
     if (response.statusCode == 200) {
       
       //print(response.statusCode);
-       _hotelList = [];
-       _hotelList.addAll(HotelList.fromJson(response.body).hotels);
-      print(_hotelList);
+       //_hotelList = [];
+      _hotelList = (response.body as List)
+        .map((json) => HotelModel.fromJson(json))
+        .toList();
+     // print(_hotelList);
        _isLoaded = true;
        update();
-    } else {}
+    } else {
+      print("Error fetching hotel list");
+    }
   }
 }

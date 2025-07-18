@@ -39,7 +39,7 @@ class TicketScreen extends StatelessWidget {
                 padding: EdgeInsets.only(
                   left: AppLayout.getHeight(context, 15),
                 ),
-                child: TicketView(ticket: ticketList[0], isColor: true),
+                child: TicketView(ticket: ticketList[index], isColor: true),
               ),
               SizedBox(height: AppLayout.getHeight(context, 1)),
               Container(

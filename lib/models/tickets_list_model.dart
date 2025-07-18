@@ -1,26 +1,64 @@
 class TicketModel {
-  String? passengerNo;
-  String? boardingState;
-  String? departureDate;
-  String? departureTime;
-  String? destinationState;
+  final LocationInfo to;
+  final String date;
+  final LocationInfo from;
+  final int number;
+  final String eTickets;
+  final String passenger;
+  final String flyingTime;
+  final String bookingCode;
+  final String flightPrice;
+  final String departureTime;
+  final String passportNumber;
 
   TicketModel({
-    this.passengerNo,
-    this.boardingState,
-    this.departureDate,
-    this.departureTime,
-    this.destinationState,
+    required this.to,
+    required this.date,
+    required this.from,
+    required this.number,
+    required this.eTickets,
+    required this.passenger,
+    required this.flyingTime,
+    required this.bookingCode,
+    required this.flightPrice,
+    required this.departureTime,
+    required this.passportNumber,
   });
 
-  TicketModel.fromJson(Map<String, dynamic> json) {
-    passengerNo = json['passenger_no'];
-    boardingState = json['boarding_state'];
-    departureDate = json['departure_date'];
-    departureTime = json['departure_time'];
-    destinationState = json['destination_state'];
+  factory TicketModel.fromJson(Map<String, dynamic> json) {
+    return TicketModel(
+      to: LocationInfo.fromJson(json['to']),
+      date: json['date'],
+      from: LocationInfo.fromJson(json['from']),
+      number: json['number'],
+      eTickets: json['e_tickets'],
+      passenger: json['passenger'],
+      flyingTime: json['flying_time'],
+      bookingCode: json['booking_code'],
+      flightPrice: json['flight_price'],
+      departureTime: json['departure_time'],
+      passportNumber: json['passport_number'],
+    );
   }
 }
+
+class LocationInfo {
+  final String code;
+  final String name;
+
+  LocationInfo({
+    required this.code,
+    required this.name,
+  });
+
+  factory LocationInfo.fromJson(Map<String, dynamic> json) {
+    return LocationInfo(
+      code: json['code'],
+      name: json['name'],
+    );
+  }
+}
+
 
 
 class TicketList {

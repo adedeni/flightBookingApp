@@ -33,7 +33,7 @@ class HotelView extends StatelessWidget {
             color: Colors.grey.shade200,
             blurRadius: AppLayout.getHeight(context, 20),
             spreadRadius: AppLayout.getHeight(context, 5),
-          )
+          ),
         ],
       ),
       child: Column(
@@ -42,7 +42,9 @@ class HotelView extends StatelessWidget {
           Container(
             height: AppLayout.getHeight(context, 180),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppLayout.getHeight(context, 12)),
+              borderRadius: BorderRadius.circular(
+                AppLayout.getHeight(context, 12),
+              ),
               color: Styles.primaryColor,
               image: DecorationImage(
                 fit: BoxFit.cover,

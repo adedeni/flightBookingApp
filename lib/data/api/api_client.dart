@@ -1,5 +1,5 @@
 
-import 'package:flightbookingapp/widgets/app_constant.dart';
+import 'package:flightbookingapp/utils/app_constant.dart';
 import 'package:get/get.dart';
 
 class ApiClient extends GetConnect implements GetxService {
