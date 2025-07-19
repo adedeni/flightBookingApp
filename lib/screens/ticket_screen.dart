@@ -1,7 +1,8 @@
 import 'package:flightbookingapp/class/ticket_view.dart';
 import 'package:flightbookingapp/controllers/tickets_list_controller.dart';
 import 'package:flightbookingapp/models/tickets_list_model.dart';
-//import 'package:flightbookingapp/utils/app_info_list.dart';
+import 'package:flightbookingapp/shimmer/app_info_list.dart';
+import 'package:flightbookingapp/shimmer/local_ticket_view.dart';
 import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:flightbookingapp/utils/styles.dart';
 import 'package:flightbookingapp/widgets/column_layout.dart';
@@ -15,9 +16,9 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class TicketScreen extends StatelessWidget {
   final TicketModel? ticket;
-  //final Map<String, dynamic> ticket;
+  final Map<String, dynamic> ? localticket;
   final bool? isColor;
-  const TicketScreen({super.key, this.ticket, this.isColor});
+  const TicketScreen({super.key, this.ticket, this.isColor, this.localticket});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,15 @@ class TicketScreen extends StatelessWidget {
                           isColor: true,
                         ),
                       )
-                      : const CircularProgressIndicator(color: Colors.white);
+                      : Container(
+                        padding: EdgeInsets.only(
+                          left: AppLayout.getHeight(context, 15),
+                        ),
+                        child: LocalTicketView(
+                          localticket: localTicketList[0],
+                          isColor: true,
+                        ),
+                      );
                 },
               ),
               SizedBox(height: AppLayout.getHeight(context, 1)),
@@ -89,8 +98,22 @@ class TicketScreen extends StatelessWidget {
                                 ),
                               ],
                             )
-                            : const CircularProgressIndicator(
-                              color: Colors.white,
+                            :Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                AppColumnLayout(
+                                  firstText:
+                                      'adedeni',
+                                  secondtText: "Passenger",
+                                  alignment: CrossAxisAlignment.start,
+                                ),
+                                AppColumnLayout(
+                                  firstText:
+                                      'A9743828',
+                                  secondtText: "Passport",
+                                  alignment: CrossAxisAlignment.end,
+                                ),
+                              ],
                             );
                       },
                     ),
@@ -120,8 +143,21 @@ class TicketScreen extends StatelessWidget {
                                 ),
                               ],
                             )
-                            : const CircularProgressIndicator(
-                              color: Colors.white,
+                            : Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                AppColumnLayout(
+                                  firstText: '9862 12 1495',
+                                  secondtText: "Number of E-ticktes",
+                                  alignment: CrossAxisAlignment.start,
+                                ),
+                                AppColumnLayout(
+                                  firstText:
+                                      'UI 9196',
+                                  secondtText: "Booking code",
+                                  alignment: CrossAxisAlignment.end,
+                                ),
+                              ],
                             );
                       },
                     ),
@@ -171,8 +207,41 @@ class TicketScreen extends StatelessWidget {
                                 ),
                               ],
                             )
-                            : const CircularProgressIndicator(
-                              color: Colors.white,
+                            : Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/visa.png",
+                                          scale: 111,
+                                        ),
+                                        Text(
+                                          " *** 1997",
+                                          style: Styles.headLineStyle3.copyWith(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Gap(AppLayout.getHeight(context, 5)),
+                                    Text(
+                                      "Payment method",
+                                      style: Styles.headLineStyle4.copyWith(
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                AppColumnLayout(
+                                  firstText:
+                                      "₦6,999.99",
+                                  secondtText: "Price",
+                                  alignment: CrossAxisAlignment.end,
+                                ),
+                              ],
                             );
                       },
                     ),
@@ -238,7 +307,15 @@ class TicketScreen extends StatelessWidget {
                           isColor: null,
                         ),
                       )
-                      : CircularProgressIndicator(color: Colors.white);
+                      : Container(
+                        padding: EdgeInsets.only(
+                          left: AppLayout.getHeight(context, 15),
+                        ),
+                        child: LocalTicketView(
+                          localticket: localTicketList[1],
+                          isColor: null,
+                        ),
+                      );
                 },
               ),
             ],

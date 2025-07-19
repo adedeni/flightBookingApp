@@ -1,5 +1,5 @@
 //import 'package:flightbookingapp/models/hotel_list_model.dart';
-import 'package:flightbookingapp/models/tickets_list_model.dart';
+//import 'package:flightbookingapp/models/tickets_list_model.dart';
 import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:flightbookingapp/utils/styles.dart';
 import 'package:flightbookingapp/widgets/layout_builder.dart';
@@ -8,11 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get_utils/get_utils.dart';
 
-class TicketView extends StatelessWidget {
-  final TicketModel ? ticket;
+class LocalTicketView extends StatelessWidget {
+
   final  Map<String, dynamic> ? localticket;
   final bool? isColor;
-  const TicketView({super.key,  this.ticket, this.isColor,  this.localticket,});
+  const LocalTicketView({super.key,  this.isColor,  this.localticket,});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class TicketView extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        ticket!.from!.code.toString(),
+                        localticket!['from']['code'],
                         style:isColor==null? Styles.headLineStyle3.copyWith(
                           color: Colors.white,
                         ):Styles.headLineStyle3,
@@ -70,7 +70,7 @@ class TicketView extends StatelessWidget {
                       const ThickContainer(isColor: true,),
                       const Spacer(),
                       Text(
-                        ticket!.to!.code.toString(),
+                        localticket!['to']['code'],
                         style:isColor==null? Styles.headLineStyle3.copyWith(
                           color: Colors.white,
                         ):Styles.headLineStyle3,
@@ -84,14 +84,14 @@ class TicketView extends StatelessWidget {
                       SizedBox(
                         width: AppLayout.getWidth(context, 100),
                         child: Text(
-                          ticket!.from!.name.toString(),
+                          localticket!['from']['name'],
                           style:isColor==null? Styles.headLineStyle4.copyWith(
                             color: Colors.white,
                           ):Styles.headLineStyle4,
                         ),
                       ),
                       Text(
-                        ticket!.flyingTime.toString(),
+                        localticket!['flying_time'],
                         style:isColor==null? Styles.headLineStyle4.copyWith(
                           color: Colors.white,
                         ):Styles.headLineStyle4,
@@ -99,7 +99,7 @@ class TicketView extends StatelessWidget {
                       SizedBox( 
                         width: AppLayout.getWidth(context, 100),
                         child: Text(
-                          ticket!.to!.name.toString(),
+                          localticket!['to']['name'],
                           textAlign: TextAlign.end,
                           style: isColor==null? Styles.headLineStyle4.copyWith(
                             color: Colors.white,
@@ -202,7 +202,7 @@ class TicketView extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          ticket!.date.toString(),
+                          localticket!['date'],
                           style:isColor==null? Styles.headLineStyle3.copyWith(
                             color: Colors.white, fontSize: AppLayout.getHeight(context, 14)
                           ):Styles.headLineStyle3.copyWith(
@@ -213,7 +213,7 @@ class TicketView extends StatelessWidget {
                       ),
                       Expanded(
                         child: Text(
-                          ticket!.departureTime.toString(),
+                          localticket!['departure_time'],
                           style:isColor==null? Styles.headLineStyle3.copyWith(
                             color: Colors.white, fontSize: AppLayout.getHeight(context, 14)
                           ):Styles.headLineStyle3.copyWith(
@@ -224,7 +224,7 @@ class TicketView extends StatelessWidget {
                       ),
                       Expanded(
                         child: Text(
-                          ticket!.number.toString(),
+                          localticket!['number'].toString(),
                           style:isColor==null? Styles.headLineStyle3.copyWith(
                             color: Colors.white, fontSize: AppLayout.getHeight(context, 14)
                           ):Styles.headLineStyle3.copyWith(

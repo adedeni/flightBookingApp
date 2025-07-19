@@ -1,8 +1,10 @@
 import 'package:flightbookingapp/class/hotel_view.dart';
+import 'package:flightbookingapp/shimmer/local_hotel_view.dart';
+import 'package:flightbookingapp/shimmer/local_ticket_view.dart';
 import 'package:flightbookingapp/class/ticket_view.dart';
 import 'package:flightbookingapp/controllers/hotel_list_controller.dart';
 import 'package:flightbookingapp/controllers/tickets_list_controller.dart';
-//import 'package:flightbookingapp/utils/app_info_list.dart';
+import 'package:flightbookingapp/shimmer/app_info_list.dart';
 import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:flightbookingapp/utils/styles.dart';
 import 'package:flightbookingapp/widgets/double_header_text.dart';
@@ -103,7 +105,15 @@ class HomeScreen extends StatelessWidget {
                       }),
                     ),
                   )
-                  : const CircularProgressIndicator(color: Colors.orange);
+                  : SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    padding: EdgeInsets.only(
+                      left: AppLayout.getWidth(context, 20),
+                    ),
+                    child: Row(
+                      children: localTicketList.map((singleTicket) => LocalTicketView(localticket: singleTicket,)).toList()
+                    ),
+                  );
             },
           ),
           Gap(AppLayout.getHeight(context, 15)),
@@ -133,7 +143,21 @@ class HomeScreen extends StatelessWidget {
                       }),
                     ),
                   )
-                  : const CircularProgressIndicator(color: Colors.orange);
+                  : SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+
+                    padding: EdgeInsets.only(
+                      left: AppLayout.getWidth(context, 20),
+                    ),
+                    child: Row(
+                      children: locaLHotelList.map((singleHotel) => LocalHotelView(localhotel: singleHotel)).toList()
+                    //   children: List.generate(hotelView.hotelList.length, (
+                    //     index,
+                    //   ) {
+                    //     return HotelView(hotel: hotelView.hotelList[index]);
+                    //   }),
+                    ),
+                  );
             },
           ),
           Gap(AppLayout.getHeight(context, 10)),
