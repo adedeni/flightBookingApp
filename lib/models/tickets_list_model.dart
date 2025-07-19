@@ -1,65 +1,78 @@
 class TicketModel {
-  final LocationInfo to;
-  final String date;
-  final LocationInfo from;
-  final int number;
-  final String eTickets;
-  final String passenger;
-  final String flyingTime;
-  final String bookingCode;
-  final String flightPrice;
-  final String departureTime;
-  final String passportNumber;
+  LocationInfo? from;
+  LocationInfo? to;
+  String? flyingTime;
+  String? date;
+  String? departureTime;
+  int? number;
+  String? passenger;
+  String? passportNumber;
+  String? eTickets;
+  String? bookingCode;
+  String? flightPrice;
 
   TicketModel({
-    required this.to,
-    required this.date,
-    required this.from,
-    required this.number,
-    required this.eTickets,
-    required this.passenger,
-    required this.flyingTime,
-    required this.bookingCode,
-    required this.flightPrice,
-    required this.departureTime,
-    required this.passportNumber,
+    this.from,
+    this.to,
+    this.flyingTime,
+    this.date,
+    this.departureTime,
+    this.number,
+    this.passenger,
+    this.passportNumber,
+    this.eTickets,
+    this.bookingCode,
+    this.flightPrice,
   });
 
-  factory TicketModel.fromJson(Map<String, dynamic> json) {
-    return TicketModel(
-      to: LocationInfo.fromJson(json['to']),
-      date: json['date'],
-      from: LocationInfo.fromJson(json['from']),
-      number: json['number'],
-      eTickets: json['e_tickets'],
-      passenger: json['passenger'],
-      flyingTime: json['flying_time'],
-      bookingCode: json['booking_code'],
-      flightPrice: json['flight_price'],
-      departureTime: json['departure_time'],
-      passportNumber: json['passport_number'],
-    );
+  TicketModel.fromJson(Map<String, dynamic> json) {
+    from = json['from'] != null ? LocationInfo.fromJson(json['from']) : null;
+    to = json['to'] != null ? LocationInfo.fromJson(json['to']) : null;
+    flyingTime = json['flying_time'];
+    date = json['date'];
+    departureTime = json['departure_time'];
+    number = json['number'];
+    passenger = json['passenger'];
+    passportNumber = json['passport_number'];
+    eTickets = json['e_tickets'];
+    bookingCode = json['booking_code'];
+    flightPrice = json['flight_price'];
   }
+
+  Map<String, dynamic> toJson() => {
+    if (from != null) 'from': from!.toJson(),
+    if (to != null) 'to': to!.toJson(),
+    'flying_time': flyingTime,
+    'date': date,
+    'departure_time': departureTime,
+    'number': number,
+    'passenger': passenger,
+    'passport_number': passportNumber,
+    'e_tickets': eTickets,
+    'booking_code': bookingCode,
+    'flight_price': flightPrice,
+  };
 }
+
 
 class LocationInfo {
-  final String code;
-  final String name;
+  String? code;
+  String? name;
 
-  LocationInfo({
-    required this.code,
-    required this.name,
-  });
+  LocationInfo({this.code, this.name});
 
-  factory LocationInfo.fromJson(Map<String, dynamic> json) {
-    return LocationInfo(
-      code: json['code'],
-      name: json['name'],
-    );
+  LocationInfo.fromJson(Map<String, dynamic> json) {
+    code = json['code'];
+    name = json['name'];
   }
+
+  Map<String, dynamic> toJson() => {
+    'code': code,
+    'name': name,
+  };
+
+
 }
-
-
 
 class TicketList {
   late List<TicketModel> _tickets;

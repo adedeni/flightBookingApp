@@ -1,5 +1,7 @@
 import 'package:flightbookingapp/class/ticket_view.dart';
-import 'package:flightbookingapp/utils/app_info_list.dart';
+import 'package:flightbookingapp/controllers/tickets_list_controller.dart';
+import 'package:flightbookingapp/models/tickets_list_model.dart';
+//import 'package:flightbookingapp/utils/app_info_list.dart';
 import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:flightbookingapp/utils/styles.dart';
 import 'package:flightbookingapp/widgets/column_layout.dart';
@@ -7,10 +9,15 @@ import 'package:flightbookingapp/widgets/layout_builder.dart';
 import 'package:flightbookingapp/widgets/top_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+// ignore: depend_on_referenced_packages
 import 'package:barcode_widget/barcode_widget.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class TicketScreen extends StatelessWidget {
-  const TicketScreen({super.key});
+  final TicketModel? ticket;
+  //final Map<String, dynamic> ticket;
+  final bool? isColor;
+  const TicketScreen({super.key, this.ticket, this.isColor});
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +42,20 @@ class TicketScreen extends StatelessWidget {
               Gap(AppLayout.getHeight(context, 20)),
               const TopTabs(firstTab: 'Upcoming', secoondTab: 'Previous'),
               Gap(AppLayout.getHeight(context, 20)),
-              Container(
-                padding: EdgeInsets.only(
-                  left: AppLayout.getHeight(context, 15),
-                ),
-                child: TicketView(ticket: ticketList[index], isColor: true),
+              GetBuilder<TicketsListController>(
+                builder: (ticketView) {
+                  return ticketView.isLoaded
+                      ? Container(
+                        padding: EdgeInsets.only(
+                          left: AppLayout.getHeight(context, 15),
+                        ),
+                        child: TicketView(
+                          ticket: ticketView.currentTicket,
+                          isColor: true,
+                        ),
+                      )
+                      : const CircularProgressIndicator(color: Colors.white);
+                },
               ),
               SizedBox(height: AppLayout.getHeight(context, 1)),
               Container(
@@ -53,84 +69,112 @@ class TicketScreen extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        AppColumnLayout(
-                          firstText: "adedeni",
-                          secondtText: "Passenger",
-                          alignment: CrossAxisAlignment.start,
-                        ),
-                        AppColumnLayout(
-                          firstText: "9036 176161",
-                          secondtText: "Passport",
-                          alignment: CrossAxisAlignment.end,
-                        ),
-                      ],
-                    ),
-                    Gap(AppLayout.getHeight(context, 20)),
-                    const AppLayoutBuilder(
-                      isColor: true,
-                      sections: 15,
-                      width: 5,
-                    ),
-                    Gap(AppLayout.getHeight(context, 20)),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        AppColumnLayout(
-                          firstText: "0158 1997 1408",
-                          secondtText: "Number of E-ticktes",
-                          alignment: CrossAxisAlignment.start,
-                        ),
-                        AppColumnLayout(
-                          firstText: "UI9195",
-                          secondtText: "Booking code",
-                          alignment: CrossAxisAlignment.end,
-                        ),
-                      ],
-                    ),
-                    Gap(AppLayout.getHeight(context, 20)),
-                    const AppLayoutBuilder(
-                      isColor: true,
-                      sections: 15,
-                      width: 5,
-                    ),
-                    Gap(AppLayout.getHeight(context, 20)),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          children: [
-                            Row(
+                    GetBuilder<TicketsListController>(
+                      builder: (ticketView) {
+                        return ticketView.isLoaded
+                            ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Image.asset(
-                                  "assets/images/visa.png",
-                                  scale: 111,
+                                AppColumnLayout(
+                                  firstText:
+                                      ticketView.currentTicket.passenger!,
+                                  secondtText: "Passenger",
+                                  alignment: CrossAxisAlignment.start,
                                 ),
-                                Text(
-                                  " *** 1997",
-                                  style: Styles.headLineStyle3.copyWith(
-                                    fontSize: 14,
-                                  ),
+                                AppColumnLayout(
+                                  firstText:
+                                      ticketView.currentTicket.passportNumber!,
+                                  secondtText: "Passport",
+                                  alignment: CrossAxisAlignment.end,
                                 ),
                               ],
-                            ),
-                            Gap(AppLayout.getHeight(context, 5)),
-                            Text(
-                              "Payment method",
-                              style: Styles.headLineStyle4.copyWith(
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const AppColumnLayout(
-                          firstText: "₦6,999.99",
-                          secondtText: "Price",
-                          alignment: CrossAxisAlignment.end,
-                        ),
-                      ],
+                            )
+                            : const CircularProgressIndicator(
+                              color: Colors.white,
+                            );
+                      },
+                    ),
+                    Gap(AppLayout.getHeight(context, 20)),
+                    const AppLayoutBuilder(
+                      isColor: true,
+                      sections: 15,
+                      width: 5,
+                    ),
+                    Gap(AppLayout.getHeight(context, 20)),
+                    GetBuilder<TicketsListController>(
+                      builder: (ticketView) {
+                        return ticketView.isLoaded
+                            ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                AppColumnLayout(
+                                  firstText: ticketView.currentTicket.eTickets!,
+                                  secondtText: "Number of E-ticktes",
+                                  alignment: CrossAxisAlignment.start,
+                                ),
+                                AppColumnLayout(
+                                  firstText:
+                                      ticketView.currentTicket.bookingCode!,
+                                  secondtText: "Booking code",
+                                  alignment: CrossAxisAlignment.end,
+                                ),
+                              ],
+                            )
+                            : const CircularProgressIndicator(
+                              color: Colors.white,
+                            );
+                      },
+                    ),
+                    Gap(AppLayout.getHeight(context, 20)),
+                    const AppLayoutBuilder(
+                      isColor: true,
+                      sections: 15,
+                      width: 5,
+                    ),
+                    Gap(AppLayout.getHeight(context, 20)),
+                    GetBuilder<TicketsListController>(
+                      builder: (ticketView) {
+                        return ticketView.isLoaded
+                            ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/visa.png",
+                                          scale: 111,
+                                        ),
+                                        Text(
+                                          " *** 1997",
+                                          style: Styles.headLineStyle3.copyWith(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Gap(AppLayout.getHeight(context, 5)),
+                                    Text(
+                                      "Payment method",
+                                      style: Styles.headLineStyle4.copyWith(
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                AppColumnLayout(
+                                  firstText:
+                                      "₦${ticketView.currentTicket.flightPrice!}",
+                                  secondtText: "Price",
+                                  alignment: CrossAxisAlignment.end,
+                                ),
+                              ],
+                            )
+                            : const CircularProgressIndicator(
+                              color: Colors.white,
+                            );
+                      },
                     ),
                     const SizedBox(height: 1),
                     //Gap(AppLayout.getHeight(context, 20)),
@@ -143,7 +187,7 @@ class TicketScreen extends StatelessWidget {
                 ),
               ),
               //barcode
-              const SizedBox(height: 1,),
+              const SizedBox(height: 1),
               Container(
                 margin: EdgeInsets.symmetric(
                   horizontal: AppLayout.getWidth(context, 16),
@@ -152,9 +196,15 @@ class TicketScreen extends StatelessWidget {
                   vertical: AppLayout.getHeight(context, 20),
                 ),
                 decoration: BoxDecoration(
-                   color: Colors.white,
-                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(AppLayout.getHeight(context, 21)),
-                  bottomLeft: Radius.circular(AppLayout.getHeight(context, 21)))
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(
+                      AppLayout.getHeight(context, 21),
+                    ),
+                    bottomLeft: Radius.circular(
+                      AppLayout.getHeight(context, 21),
+                    ),
+                  ),
                 ),
                 child: Container(
                   padding: EdgeInsets.symmetric(
@@ -176,47 +226,60 @@ class TicketScreen extends StatelessWidget {
                 ),
               ),
               Gap(AppLayout.getHeight(context, 20)),
-              Container(
-                padding: EdgeInsets.only(
-                  left: AppLayout.getHeight(context, 15),
-                ),
-                child: TicketView(ticket: ticketList[0], isColor: null),
+              GetBuilder<TicketsListController>(
+                builder: (ticketView) {
+                  return ticketView.isLoaded
+                      ? Container(
+                        padding: EdgeInsets.only(
+                          left: AppLayout.getHeight(context, 15),
+                        ),
+                        child: TicketView(
+                          ticket: ticketView.nextTicket,
+                          isColor: null,
+                        ),
+                      )
+                      : CircularProgressIndicator(color: Colors.white);
+                },
               ),
             ],
           ),
-        
-        Positioned(
-          left: AppLayout.getWidth(context, 25),
-          top: AppLayout.getHeight(context, 295),
-          child: Container(
-            padding: EdgeInsets.all(AppLayout.getWidth(context, 3)),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: Styles.textColor, width: AppLayout.getWidth(context, 2)
-            )
-            ),
-            child: CircleAvatar(
-              maxRadius: 4,
-              backgroundColor: Styles.textColor,
-            ),
-          ),
-        ),
-        Positioned(
-          right: AppLayout.getWidth(context, 25),
-          top: AppLayout.getHeight(context, 295),
-          child: Container(
-            padding: EdgeInsets.all(AppLayout.getWidth(context, 3)),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: Styles.textColor, width: AppLayout.getWidth(context, 2)
-            )
-            ),
-            child: CircleAvatar(
-              maxRadius: 4,
-              backgroundColor: Styles.textColor,
+
+          Positioned(
+            left: AppLayout.getWidth(context, 25),
+            top: AppLayout.getHeight(context, 295),
+            child: Container(
+              padding: EdgeInsets.all(AppLayout.getWidth(context, 3)),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: Styles.textColor,
+                  width: AppLayout.getWidth(context, 2),
+                ),
+              ),
+              child: CircleAvatar(
+                maxRadius: 4,
+                backgroundColor: Styles.textColor,
+              ),
             ),
           ),
-        )
+          Positioned(
+            right: AppLayout.getWidth(context, 25),
+            top: AppLayout.getHeight(context, 295),
+            child: Container(
+              padding: EdgeInsets.all(AppLayout.getWidth(context, 3)),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: Styles.textColor,
+                  width: AppLayout.getWidth(context, 2),
+                ),
+              ),
+              child: CircleAvatar(
+                maxRadius: 4,
+                backgroundColor: Styles.textColor,
+              ),
+            ),
+          ),
         ],
       ),
     );

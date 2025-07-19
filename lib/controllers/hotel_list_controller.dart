@@ -24,7 +24,7 @@ List<HotelModel> get hotelList => _hotelList;
        _isLoaded = true;
        update();
     } else {
-      print("Error fetching hotel list");
+      //print("Error fetching hotel list");
     }
   }
 }

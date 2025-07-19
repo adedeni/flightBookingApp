@@ -1,3 +1,7 @@
+import 'package:flightbookingapp/controllers/flight_distance_controller.dart';
+import 'package:flightbookingapp/controllers/tickets_list_controller.dart';
+import 'package:flightbookingapp/models/flight_distance_model.dart';
+import 'package:flightbookingapp/models/tickets_list_model.dart';
 import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:flightbookingapp/utils/styles.dart';
 import 'package:flightbookingapp/widgets/column_layout.dart';
@@ -5,9 +9,13 @@ import 'package:flightbookingapp/widgets/layout_builder.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:intl/intl.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  final TicketModel? ticket;
+  final FlightModel? flight;
+  const ProfileScreen({super.key, this.flight, this.ticket});
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +55,19 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                   Gap(AppLayout.getHeight(context, 2)),
-                  Text(
-                    "Abuja",
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey.shade500,
-                      fontWeight: FontWeight.w500,
-                    ),
+                  GetBuilder<TicketsListController>(
+                    builder: (ticketView) {
+                      return ticketView.isLoaded
+                          ? Text(
+                            ticketView.currentTicket.to!.name!,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey.shade500,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )
+                          : Text("Lagos");
+                    },
                   ),
                   Gap(AppLayout.getHeight(context, 8)),
                   Container(
@@ -198,26 +212,62 @@ class ProfileScreen extends StatelessWidget {
             style: Styles.headLineStyle3.copyWith(fontWeight: FontWeight.bold),
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(context, 15)),
+            padding: EdgeInsets.symmetric(
+              horizontal: AppLayout.getWidth(context, 15),
+            ),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppLayout.getWidth(context, 18)),
+              borderRadius: BorderRadius.circular(
+                AppLayout.getWidth(context, 18),
+              ),
               color: Styles.backgroundColor,
-              boxShadow: [BoxShadow(
-                color: Colors.grey.shade200,
-                blurRadius: 1,
-                spreadRadius: 1
-              )]
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade200,
+                  blurRadius: 1,
+                  spreadRadius: 1,
+                ),
+              ],
             ),
             child: Column(
               children: [
                 Gap(AppLayout.getHeight(context, 15)),
-                Text(
-                  "015897",
-                  style: TextStyle(
-                    fontSize: 40,
-                    color: Styles.textColor,
-                    fontWeight: FontWeight.w600,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GetBuilder<FlightDistanceController>(
+                      builder: (flightDistance) {
+                        return flightDistance.isLoaded
+                            ? Text(
+                              (flightDistance.flightDistance!.ufitFly!.distance! + flightDistance.flightDistance!.airPeace!.distance! + flightDistance.flightDistance!.valueJets!.distance!).toString(),
+                              style: TextStyle(
+                                fontSize: 40,
+                                color: Styles.textColor,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            )
+                            : Text(
+                              "015897",
+                              style: TextStyle(
+                                fontSize: 40,
+                                color: Styles.textColor,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            );
+                      },
+                    ),
+                    Gap(AppLayout.getHeight(context, 5)),
+                    Container(
+                      margin: EdgeInsets.only(
+                        top: AppLayout.getHeight(context, 16),
+                      ),
+                      child: Text(
+                        "Miles",
+                        style: Styles.headLineStyle4.copyWith(
+                          fontSize: AppLayout.getHeight(context, 16),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Gap(AppLayout.getHeight(context, 20)),
                 Row(
@@ -230,7 +280,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "11 June 2025",
+                      DateFormat("dd MMMM yyyy").format(DateTime.now()),
                       style: Styles.headLineStyle4.copyWith(
                         fontSize: AppLayout.getHeight(context, 16),
                       ),
@@ -239,67 +289,158 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 Gap(AppLayout.getHeight(context, 5)),
                 Divider(color: Colors.grey.shade300),
-                Row(
-                  children: [
-                    AppColumnLayout(
-                      firstText: "015 811",
-                      secondtText: "Meters",
-                      alignment: CrossAxisAlignment.start,
-                    ),
-                    Spacer(),
-                    AppColumnLayout(
-                      firstText: "Value Jets",
-                      secondtText: "Received from",
-                      alignment: CrossAxisAlignment.end,
-                    ),
-                  ],
+                GetBuilder<FlightDistanceController>(
+                  builder: (flightDistance) {
+                    return flightDistance.isLoaded
+                        ? Row(
+                          children: [
+                            AppColumnLayout(
+                              firstText:
+                                  flightDistance
+                                      .flightDistance!
+                                      .airPeace!
+                                      .distance
+                                      .toString(),
+                              secondtText: "Miles",
+                              alignment: CrossAxisAlignment.start,
+                            ),
+                            Spacer(),
+                            AppColumnLayout(
+                              secondtText: "Flight",
+                              firstText: "AirPeace",
+
+                              alignment: CrossAxisAlignment.end,
+                            ),
+                          ],
+                        )
+                        : Row(
+                          children: [
+                            AppColumnLayout(
+                              firstText: "24626",
+                              secondtText: "Miles",
+                              alignment: CrossAxisAlignment.start,
+                            ),
+                            Spacer(),
+                            AppColumnLayout(
+                              secondtText: "Flight",
+                              firstText: "AirPeace",
+
+                              alignment: CrossAxisAlignment.end,
+                            ),
+                          ],
+                        );
+                  },
+                ),
+
+                Gap(AppLayout.getHeight(context, 15)),
+                AppLayoutBuilder(isColor: true, sections: 12),
+                GetBuilder<FlightDistanceController>(
+                  builder: (flightDistance) {
+                    return flightDistance.isLoaded
+                        ? Row(
+                          children: [
+                            AppColumnLayout(
+                              firstText:
+                                  flightDistance
+                                      .flightDistance!
+                                      .valueJets!
+                                      .distance
+                                      .toString(),
+                              secondtText: "Miles",
+                              alignment: CrossAxisAlignment.start,
+                            ),
+                            Spacer(),
+                            AppColumnLayout(
+                              secondtText: "Flight",
+                              firstText: "ValueJets",
+
+                              alignment: CrossAxisAlignment.end,
+                            ),
+                          ],
+                        )
+                        : Row(
+                          children: [
+                            AppColumnLayout(
+                              firstText: "24626",
+                              secondtText: "Miles",
+                              alignment: CrossAxisAlignment.start,
+                            ),
+                            Spacer(),
+                            AppColumnLayout(
+                              secondtText: "Flight",
+                              firstText: "ValueJets",
+
+                              alignment: CrossAxisAlignment.end,
+                            ),
+                          ],
+                        );
+                  },
                 ),
                 Gap(AppLayout.getHeight(context, 15)),
                 AppLayoutBuilder(isColor: true, sections: 12),
-                Row(
-                  children: [
-                    AppColumnLayout(
-                      firstText: "97",
-                      secondtText: "Meters",
-                      alignment: CrossAxisAlignment.start,
-                    ),
-                    Spacer(),
-                    AppColumnLayout(
-                      firstText: "AirPeace",
-                      secondtText: "Received from",
-                      alignment: CrossAxisAlignment.end,
-                    ),
-                  ],
-                ),
-                Gap(AppLayout.getHeight(context, 15)),
-                AppLayoutBuilder(isColor: true, sections: 12),
-                Row(
-                  children: [
-                    AppColumnLayout(
-                      firstText: "140 897",
-                      secondtText: "Meters",
-                      alignment: CrossAxisAlignment.start,
-                    ),
-                    Spacer(),
-                    AppColumnLayout(
-                      firstText: "UfitFly",
-                      secondtText: "Received from",
-                      alignment: CrossAxisAlignment.end,
-                    ),
-                  ],
+                GetBuilder<FlightDistanceController>(
+                  builder: (flightDistance) {
+                    return flightDistance.isLoaded
+                        ? Row(
+                          children: [
+                            AppColumnLayout(
+                              firstText:
+                                  flightDistance
+                                      .flightDistance!
+                                      .ufitFly!
+                                      .distance
+                                      .toString(),
+                              secondtText: "Miles",
+                              alignment: CrossAxisAlignment.start,
+                            ),
+                            Spacer(),
+                            AppColumnLayout(
+                              secondtText: "Flight",
+                              firstText: "UfitFly",
+
+                              alignment: CrossAxisAlignment.end,
+                            ),
+                          ],
+                        )
+                        : Row(
+                          children: [
+                            AppColumnLayout(
+                              firstText: "24626",
+                              secondtText: "Miles",
+                              alignment: CrossAxisAlignment.start,
+                            ),
+                            Spacer(),
+                            AppColumnLayout(
+                              secondtText: "Flight",
+                              firstText: "UfitFly",
+
+                              alignment: CrossAxisAlignment.end,
+                            ),
+                          ],
+                        );
+                  },
                 ),
                 Gap(AppLayout.getHeight(context, 15)),
                 AppLayoutBuilder(isColor: true, sections: 12),
               ],
             ),
           ),
-        
-        Gap(AppLayout.getHeight(context, 25)),
-        InkWell(
-          onTap: () {
-                      // print("tapped");
-                    },
-          child: Center(child: Text("How to get more rewards", style: Styles.textStyle.copyWith(color: Styles.primaryColor, fontWeight: FontWeight.w500)))),
+
+          Gap(AppLayout.getHeight(context, 25)),
+          InkWell(
+            onTap: () {
+              // print("tapped");
+            },
+            child: Center(
+              child: Text(
+                "How to get more rewards",
+                style: Styles.textStyle.copyWith(
+                  color: Styles.primaryColor,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ),
           Gap(AppLayout.getHeight(context, 10)),
         ],
       ),

@@ -6,5 +6,6 @@ class AppContants {
   static const String BASE_URL = "https://api.npoint.io";
   static const String HOTEL_LIST_URI = "/defab94cb37a0f355755";
   static const String TICKET_LIST_URI = "/321efc482b42ebc7799b";
+  static const String FLIGHT_DISTANCE_URI = "/254e5def5db5022fe5a2";
   static const String TOKEN = "TICKETtoken";
 }

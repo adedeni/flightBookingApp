@@ -41,7 +41,7 @@ class TicketView extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        ticket['from']['code'],
+                        ticket.from!.code.toString(),
                         style:isColor==null? Styles.headLineStyle3.copyWith(
                           color: Colors.white,
                         ):Styles.headLineStyle3,
@@ -70,7 +70,7 @@ class TicketView extends StatelessWidget {
                       const ThickContainer(isColor: true,),
                       const Spacer(),
                       Text(
-                        ticket['to']['code'],
+                        ticket.to!.code.toString(),
                         style:isColor==null? Styles.headLineStyle3.copyWith(
                           color: Colors.white,
                         ):Styles.headLineStyle3,
@@ -84,14 +84,14 @@ class TicketView extends StatelessWidget {
                       SizedBox(
                         width: AppLayout.getWidth(context, 100),
                         child: Text(
-                          ticket['from']['name'],
+                          ticket.from!.name.toString(),
                           style:isColor==null? Styles.headLineStyle4.copyWith(
                             color: Colors.white,
                           ):Styles.headLineStyle4,
                         ),
                       ),
                       Text(
-                        ticket['flying_time'],
+                        ticket.flyingTime.toString(),
                         style:isColor==null? Styles.headLineStyle4.copyWith(
                           color: Colors.white,
                         ):Styles.headLineStyle4,
@@ -99,7 +99,7 @@ class TicketView extends StatelessWidget {
                       SizedBox( 
                         width: AppLayout.getWidth(context, 100),
                         child: Text(
-                          ticket['to']['name'],
+                          ticket.to!.name.toString(),
                           textAlign: TextAlign.end,
                           style: isColor==null? Styles.headLineStyle4.copyWith(
                             color: Colors.white,
@@ -202,7 +202,7 @@ class TicketView extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          ticket['date'],
+                          ticket.date.toString(),
                           style:isColor==null? Styles.headLineStyle3.copyWith(
                             color: Colors.white, fontSize: AppLayout.getHeight(context, 14)
                           ):Styles.headLineStyle3.copyWith(
@@ -213,7 +213,7 @@ class TicketView extends StatelessWidget {
                       ),
                       Expanded(
                         child: Text(
-                          ticket['departure_time'],
+                          ticket.departureTime.toString(),
                           style:isColor==null? Styles.headLineStyle3.copyWith(
                             color: Colors.white, fontSize: AppLayout.getHeight(context, 14)
                           ):Styles.headLineStyle3.copyWith(
@@ -224,7 +224,7 @@ class TicketView extends StatelessWidget {
                       ),
                       Expanded(
                         child: Text(
-                          ticket['number'].toString(),
+                          ticket.number.toString(),
                           style:isColor==null? Styles.headLineStyle3.copyWith(
                             color: Colors.white, fontSize: AppLayout.getHeight(context, 14)
                           ):Styles.headLineStyle3.copyWith(

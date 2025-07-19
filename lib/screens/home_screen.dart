@@ -2,7 +2,7 @@ import 'package:flightbookingapp/class/hotel_view.dart';
 import 'package:flightbookingapp/class/ticket_view.dart';
 import 'package:flightbookingapp/controllers/hotel_list_controller.dart';
 import 'package:flightbookingapp/controllers/tickets_list_controller.dart';
-import 'package:flightbookingapp/utils/app_info_list.dart';
+//import 'package:flightbookingapp/utils/app_info_list.dart';
 import 'package:flightbookingapp/utils/app_layout.dart';
 import 'package:flightbookingapp/utils/styles.dart';
 import 'package:flightbookingapp/widgets/double_header_text.dart';
